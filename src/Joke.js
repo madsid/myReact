@@ -4,7 +4,7 @@ class Joke extends Component {
   render() {
     return (
       <div>
-        <p> This is Joke </p> 
+        <p> {this.props.data} </p> 
       </div>
     );
   }
