@@ -4,12 +4,16 @@ import nanoajax from 'nanoajax';
 
 class JokeBlock extends Component {
   constructor(props) {
-    super(props);
+  super(props);
     this.state = {
       data: []
     };
-  } 
-  componentDidMount(){
+
+    this.getData = this.getData.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  getData(){
     nanoajax.ajax({url:"http://api.icndb.com/jokes/random/10"}, function(code, resp){
       if(code === 200){
         resp = JSON.parse(resp);
@@ -18,12 +22,17 @@ class JokeBlock extends Component {
         });
       }
     }.bind(this));
-  };
+  }
+
+  handleClick(){
+    this.getData();
+  }
+  componentDidMount(){
+    this.getData();
+  }
 
   render() {
-    //const data = { "type": "success", "value": [ { "id": 173, "joke": "'Icy-Hot' is too weak for Chuck Norris. After a workout, Chuck Norris rubs his muscles down with liquid-hot MAGMA.", "categories": [] }, { "id": 541, "joke": "When Chuck Norris break the build, you can't fix it, because there is not a single line of code left.", "categories": ["nerdy"] }, { "id": 89, "joke": "For some, the left testicle is larger than the right one. For Chuck Norris, each testicle is larger than the other one.", "categories": ["explicit"] } ]  };
-    var newJokes = this.state.data; 
-    var jokes = newJokes.map(function(joke){
+    var jokes = this.state.data.map(function(joke){
       return (
         <div key={joke.id}>
           <Joke data={joke.joke}/>
@@ -32,8 +41,12 @@ class JokeBlock extends Component {
     });
 
     return (
-      <div>
-        <h2> This is JokeBlock </h2>
+      <div style={styles.main}>
+        <h2 style={styles.h2}> 
+          Click to 
+          <a href="/##" onClick={this.handleClick} > Refresh</a>
+        </h2> 
+        <hr style={styles.hr} />
         <div> {jokes} </div> 
       </div>
     );
@@ -41,6 +54,26 @@ class JokeBlock extends Component {
 
 }
 
-
+const styles = {
+  main:{
+    backgroundColor:"#F9F9F9",
+    marginTop:"20px",
+    marginLeft:"10%",
+    marginRight:"10%",
+    borderRadius:"4px",
+    padding:"20px 5%",
+    textAlign:"center",
+    boxShadow:"0px 0px 20px #9AA4AD"
+  },
+  h2:{
+    color:"#818181",
+    textAlign:"left",
+    paddingLeft:"10px"
+  },
+  hr:{
+    border: "1px solid #EEE",
+    marginTop:"-10px"
+  }
+}
 
 export default JokeBlock;
