@@ -4,7 +4,9 @@ class Joke extends Component {
   render() {
     return (
       <div style={styles.main}>
-        <p> {this.props.data} </p> 
+        <div style={styles.blockquote}> 
+          <p style={styles.joke}> {this.props.data} </p>
+        </div>
         <hr style={styles.hr}/>
       </div>
     );
@@ -14,7 +16,7 @@ class Joke extends Component {
 const styles = {
   main:{
     paddingLeft:"20px",
-    paddingTop:"20px",
+    paddingTop:"5px",
     marginLeft:"30px",
     fontSize:"20px",
     textAlign:"left",
@@ -24,6 +26,19 @@ const styles = {
     border:"1px solid #E8E8E8",
     marginTop:"45px",
     marginLeft:"-30px"
+  },
+  joke:{
+    lineSpacing:"3px",
+    lineHeight:"30px",
+    marginLeft:"30px",
+    color:"#888"
+  },
+  blockquote:{  
+    backgroundColor:"#f9f9f9",
+    borderLeft: "10px solid #ccc",
+    margin: "1.5em 10px",
+    padding: "0.5em 10px",
+    quotes: "201C201D20182019",
   }
 }
 

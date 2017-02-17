@@ -14,7 +14,7 @@ class JokeBlock extends Component {
   }
 
   getData(){
-    nanoajax.ajax({url:"http://api.icndb.com/jokes/random/10"}, function(code, resp){
+    nanoajax.ajax({url:"http://api.icndb.com/jokes/random/5"}, function(code, resp){
       if(code === 200){
         resp = JSON.parse(resp);
         this.setState({
@@ -42,10 +42,7 @@ class JokeBlock extends Component {
 
     return (
       <div style={styles.main}>
-        <h2 style={styles.h2}> 
-          Click to 
-          <a href="/##" onClick={this.handleClick} > Refresh</a>
-        </h2> 
+        <p style={styles.reload} onClick={this.handleClick} > More &#x21bb;</p>
         <hr style={styles.hr} />
         <div> {jokes} </div> 
       </div>
@@ -56,19 +53,23 @@ class JokeBlock extends Component {
 
 const styles = {
   main:{
-    backgroundColor:"#F9F9F9",
+    //backgroundColor:"#F9F9F9",
+    //boxShadow:"0px 0px 20px #9AA4AD",
     marginTop:"20px",
     marginLeft:"10%",
     marginRight:"10%",
-    borderRadius:"4px",
+    borderRadius:"6px",
     padding:"20px 5%",
     textAlign:"center",
-    boxShadow:"0px 0px 20px #9AA4AD"
   },
-  h2:{
-    color:"#818181",
-    textAlign:"left",
-    paddingLeft:"10px"
+  reload:{
+    color:"#4DBCE9",
+    paddingLeft:"10px",
+    fontSize:"30px",
+    cursor:"pointer",
+    fontWeight:"bold",
+    maxWidth: "300px",
+    margin: "30px auto"
   },
   hr:{
     border: "1px solid #EEE",
