@@ -53,8 +53,6 @@ class JokeBlock extends Component {
 
 const styles = {
   main:{
-    //backgroundColor:"#F9F9F9",
-    //boxShadow:"0px 0px 20px #9AA4AD",
     marginTop:"20px",
     marginLeft:"10%",
     marginRight:"10%",
